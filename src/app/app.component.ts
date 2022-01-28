@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'cmes-workshop2';
+  title:string = 'cmes-workshop';
+
+  test(){
+    this.title = "neuerName";
+  }
 }

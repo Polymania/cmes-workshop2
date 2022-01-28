@@ -3,16 +3,36 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { HomeComponent } from './components/home/home.component';
+import { OrderComponent } from './components/order/order.component';
+import { ODataConfiguration, ODataServiceFactory } from 'angular-odata-es5';
+import { MesODataConfig } from './mes-odata-config';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    HttpClientModule  
   ],
-  providers: [],
+  providers: [ODataServiceFactory,
+    { provide: ODataConfiguration,  useClass:MesODataConfig}
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
