@@ -13,6 +13,9 @@ import { OrderComponent } from './components/order/order.component';
 import { ODataConfiguration, ODataServiceFactory } from 'angular-odata-es5';
 import { MesODataConfig } from './mes-odata-config';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,11 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    HttpClientModule  
+    HttpClientModule,
+    MatInputModule,
+    FormsModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   providers: [ODataServiceFactory,
     { provide: ODataConfiguration,  useClass:MesODataConfig}
