@@ -8,16 +8,25 @@ import { ODataService, ODataServiceFactory } from 'angular-odata-es5';
 })
 export class OrderComponent implements OnInit {
   odata:ODataService<any>;
-  workCenter: any;
+  productionOrder: any;
+  itemCode: string;
+
   constructor(private oDataService: ODataServiceFactory) {
-    this.odata = oDataService.CreateService<any>("WorkCenters");
+    this.odata = oDataService.CreateService<any>("ProductionOrders");
+    this.itemCode = '422992';
   }
 
   ngOnInit(): void {
-    this.odata.Query().Filter("Code eq '30041 Sorter Out'").Select("Code, CostCenter").Exec().subscribe((data)=>{
+
+  }
+
+  loadData(){
+    console.log(`ItemCode ${this.itemCode}`);
+    this.odata.Query().Filter(`ProductionItems/any(d:d/Code eq '${this.itemCode}')`).Expand("ProductionSteps").Exec().subscribe(
+      data => {
       console.log(data);
-      this.workCenter = data[0];
-    })
+      this.productionOrder = data[0];
+    });
   }
 
 }
