@@ -1,8 +1,17 @@
 <!-- <p *ngIf="workCenter">{{workCenter['Code']}}</p> -->
 
-<mat-form-field class="example-full-width" appearance="fill">
+<mat-form-field class="example-full-width" appearance="outline" class="input">
   <mat-label>Bauteilnummer</mat-label>
   <input matInput placeholder="insert ItemCode" [(ngModel)]="itemCode">
 </mat-form-field>
-<button mat-button color="primary" (click)="loadData()">LoadData</button>
+<button mat-raised-button color="primary" (click)="loadData()" class="input">LoadData</button>
+<div *ngIf="productionOrder">
+  <div>BauteilId: {{productionOrder.Code}} </div>
+  <div>PlanDatum: {{productionOrder.DesiredStartDate | date : "dd MMM yyyy"}} </div>
+</div>
+<div *ngIf="productionOrder">
+  <div *ngFor="let prodStep of productionOrder.ProductionSteps">
+    <app-production-step [step]="prodStep"></app-production-step>
+  </div>
+</div>
 
