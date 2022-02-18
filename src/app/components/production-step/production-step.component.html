@@ -2,7 +2,7 @@
   {{step.WorkCenterCode}}
 </div> -->
 
-<mat-card>
+<mat-card [style.background-color]="step.ProductionState == 'Finished'? 'lightgreen' : 'lightsteelblue'">
   <mat-card-title>{{step.Code}}</mat-card-title>
   <mat-card-subtitle>{{step.WorkCenterCode}}</mat-card-subtitle>
   <mat-card-content>
@@ -10,6 +10,8 @@
     <div>{{step.DesiredEndDateProcessing | date : "dd MMM yyyy"}}</div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>Rückmeldung</button>
+    <div *ngIf="step.ProductionState != 'Finished'">
+    <button mat-raised-button color="accent" (click)="btnClick()">Rückmeldung</button>
+  </div>
   </mat-card-actions>
 </mat-card>

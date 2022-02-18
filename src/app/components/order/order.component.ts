@@ -13,7 +13,7 @@ export class OrderComponent implements OnInit {
 
   constructor(private oDataService: ODataServiceFactory) {
     this.odata = oDataService.CreateService<any>("ProductionOrders");
-    this.itemCode = '422992';
+    this.itemCode = '145342';
   }
 
   ngOnInit(): void {
@@ -29,4 +29,24 @@ export class OrderComponent implements OnInit {
     });
   }
 
+  onFeedback(step: any){
+    console.log("Feedback ind OrderComponent");
+    console.log(step);
+
+    const data = {
+      ProductionItemCode: this.itemCode,
+      ProductionStepCode: step.Code,
+      WorkcenterCode: step.WorkCenterCode,
+      CountGood: 1,
+      FeedbackState: 'Finished',
+      ProcessingState: 10,
+      TimeStamp: new Date(),
+      CreationSource: 'Andreas'
+      };
+
+    console.log(data);
+    this.odata.Put(data, "Feedbacks").Exec().subscribe((erg)=>{
+      console.log(erg);
+    })
+  }
 }

@@ -11,7 +11,7 @@
 </div>
 <div *ngIf="productionOrder">
   <div *ngFor="let prodStep of productionOrder.ProductionSteps">
-    <app-production-step [step]="prodStep"></app-production-step>
+    <app-production-step [step]="prodStep" (feedback)="onFeedback($event)"></app-production-step>
   </div>
 </div>
 
