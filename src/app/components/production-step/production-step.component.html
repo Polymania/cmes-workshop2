@@ -1,0 +1,15 @@
+<!-- <div class="style">
+  {{step.WorkCenterCode}}
+</div> -->
+
+<mat-card>
+  <mat-card-title>{{step.Code}}</mat-card-title>
+  <mat-card-subtitle>{{step.WorkCenterCode}}</mat-card-subtitle>
+  <mat-card-content>
+    <div>{{step.ProductionState}}</div>
+    <div>{{step.DesiredEndDateProcessing | date : "dd MMM yyyy"}}</div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Rückmeldung</button>
+  </mat-card-actions>
+</mat-card>
