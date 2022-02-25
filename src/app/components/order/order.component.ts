@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ODataService, ODataServiceFactory } from 'angular-odata-es5';
+import { LogonService } from 'src/app/services/logon.service';
 
 @Component({
   selector: 'app-order',
@@ -11,13 +12,13 @@ export class OrderComponent implements OnInit {
   productionOrder: any;
   itemCode: string;
 
-  constructor(private oDataService: ODataServiceFactory) {
+  constructor(private oDataService: ODataServiceFactory, private logonService: LogonService) {
     this.odata = oDataService.CreateService<any>("ProductionOrders");
-    this.itemCode = '145342';
+    this.itemCode = '168154';
   }
 
   ngOnInit(): void {
-
+    this.logonService.logon("Administrator", "Homag");
   }
 
   loadData(){
