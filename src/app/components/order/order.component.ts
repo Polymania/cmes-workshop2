@@ -9,12 +9,14 @@ import { LogonService } from 'src/app/services/logon.service';
 })
 export class OrderComponent implements OnInit {
   odata:ODataService<any>;
+  odataFeedback:ODataService<any>;
   productionOrder: any;
   itemCode: string;
 
   constructor(private oDataService: ODataServiceFactory, private logonService: LogonService) {
     this.odata = oDataService.CreateService<any>("ProductionOrders");
-    this.itemCode = '168154';
+    this.odataFeedback = oDataService.CreateService<any>("Feedbacks");
+    this.itemCode = '486072';
   }
 
   ngOnInit(): void {
@@ -41,12 +43,12 @@ export class OrderComponent implements OnInit {
       CountGood: 1,
       FeedbackState: 'Finished',
       ProcessingState: 10,
-      TimeStamp: new Date(),
+      Timestamp: new Date(),
       CreationSource: 'Andreas'
       };
 
     console.log(data);
-    this.odata.Put(data, "Feedbacks").Exec().subscribe((erg)=>{
+    this.odataFeedback.Post(data).Exec().subscribe((erg)=>{
       console.log(erg);
     })
   }
