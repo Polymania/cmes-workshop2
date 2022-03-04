@@ -12,12 +12,13 @@ import { HomeComponent } from './components/home/home.component';
 import { OrderComponent } from './components/order/order.component';
 import { ODataConfiguration, ODataServiceFactory } from 'angular-odata-es5';
 import { MesODataConfig } from './mes-odata-config';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ProductionStepComponent } from './components/production-step/production-step.component';
 import {MatCardModule} from '@angular/material/card';
+import { TokenInterceptor } from './services/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {MatCardModule} from '@angular/material/card';
     MatCardModule
   ],
   providers: [ODataServiceFactory,
-    { provide: ODataConfiguration,  useClass:MesODataConfig}
+    { provide: ODataConfiguration,  useClass:MesODataConfig},
+    { provide: HTTP_INTERCEPTORS, useClass:TokenInterceptor, multi: true}
 ],
   bootstrap: [AppComponent]
 })
