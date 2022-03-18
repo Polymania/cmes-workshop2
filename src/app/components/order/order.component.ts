@@ -24,7 +24,7 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.logonService.logon("Administrator", "Homag");
-    const hub = this.signalR.createHub("Andreas");
+    const hub = this.signalR.createHub("NotificationHub");
     if(hub != null){
       hub.state$.subscribe((state)=>{
         console.log(state);
