@@ -1,5 +1,5 @@
 
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" class="head">
     <button mat-icon-button class="example-icon" [matMenuTriggerFor]="unsermenu" >
      <mat-icon>menu</mat-icon>
    </button>
@@ -17,5 +17,14 @@
   </button>
  </mat-toolbar>
 
+<div class="main">
+  <router-outlet></router-outlet>
+</div>
 
-<router-outlet></router-outlet>
+<div class="test">
+
+</div>
+
+<mat-toolbar class="foot">
+  <span>&#169; HOMAG Software Solutions</span>
+</mat-toolbar>
