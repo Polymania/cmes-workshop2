@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ODataService, ODataServiceFactory } from 'angular-odata-es5';
 import { LogonService } from 'src/app/services/logon.service';
 import { SignalRService } from 'src/app/services/signal-r.service';
@@ -16,10 +16,11 @@ export class OrderComponent implements OnInit {
 
   constructor(private oDataService: ODataServiceFactory,
               private logonService: LogonService,
-              private signalR: SignalRService) {
+              private signalR: SignalRService,
+              private ref: ChangeDetectorRef) {
     this.odata = oDataService.CreateService<any>("ProductionOrders");
     this.odataFeedback = oDataService.CreateService<any>("Feedbacks");
-    this.itemCode = '518178';
+    this.itemCode = '538256';
   }
 
   ngOnInit(): void {
@@ -31,7 +32,11 @@ export class OrderComponent implements OnInit {
       });
 
       hub.on('onEntityChangedMessage').subscribe((data:any)=>{
-        console.log(data);
+        if(data.includes(this.productionOrder?.Code)){
+          console.log("reload");
+          this.loadData();
+
+        }
       });
 
       hub.start();
@@ -43,7 +48,9 @@ export class OrderComponent implements OnInit {
     this.odata.Query().Filter(`ProductionItems/any(d:d/Code eq '${this.itemCode}')`).Expand("ProductionSteps").Exec().subscribe(
       data => {
       console.log(data);
-      this.productionOrder = data[0];
+
+        this.productionOrder = data[0];
+        this.ref.detectChanges();
     });
   }
 
