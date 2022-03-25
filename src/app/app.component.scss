@@ -7,7 +7,7 @@
 
   grid-template:
     " header header " auto
-    " main1   main2  " 1fr
+    " main   main  " 1fr
     " footer footer " auto
     / 2fr    1fr
   ;
@@ -20,14 +20,11 @@
 }
 
 .main{
-  grid-area: main1;
+  grid-area: main;
   overflow: auto;
 }
 
-.test{
-  grid-area: main2;
-  background-color: blue;
-}
+
 
 .foot{
   grid-area: footer;

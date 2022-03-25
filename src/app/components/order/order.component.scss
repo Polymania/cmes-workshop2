@@ -2,20 +2,22 @@
   margin: 16px;
 }
 
-:host {  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 200 1fr;
+:host {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
   gap: 0px 0px;
-  grid-auto-flow: row;
   grid-template-areas:
-    "order"
-    "steps";
-
+    "order drawing"
+    "steps drawing";
+  align-content: stretch;
+  align-items: stretch;
 }
-
 .order { grid-area: order; }
-
-.steps {
-  grid-area: steps;
-
+.steps { grid-area: steps; }
+.drawing {
+  grid-area: drawing;
+  height: 600px;
+  min-width: 100%;
  }

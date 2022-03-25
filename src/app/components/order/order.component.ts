@@ -20,7 +20,7 @@ export class OrderComponent implements OnInit {
               private ref: ChangeDetectorRef) {
     this.odata = oDataService.CreateService<any>("ProductionOrders");
     this.odataFeedback = oDataService.CreateService<any>("Feedbacks");
-    this.itemCode = '538256';
+    this.itemCode = '546858';
   }
 
   ngOnInit(): void {
