@@ -19,13 +19,21 @@ import { MatInputModule } from '@angular/material/input';
 import { ProductionStepComponent } from './components/production-step/production-step.component';
 import {MatCardModule} from '@angular/material/card';
 import { TokenInterceptor } from './services/token.interceptor';
+import { NgtCoreModule } from '@angular-three/core';
+import { NgtBoxGeometryModule } from '@angular-three/core/geometries';
+import { NgtMeshModule } from '@angular-three/core/meshes';
+import { NgtSobaOrbitControlsModule } from '@angular-three/soba/controls'
+import  { NgtAmbientLightModule,  NgtSpotLightModule} from '@angular-three/core/lights'
+import { NgtMeshStandardMaterialModule } from '@angular-three/core/materials';
+import { PartComponent } from './components/part/part.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     OrderComponent,
-    ProductionStepComponent
+    ProductionStepComponent,
+    PartComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +48,14 @@ import { TokenInterceptor } from './services/token.interceptor';
     FormsModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    NgtCoreModule,
+    NgtBoxGeometryModule,
+    NgtMeshModule,
+    NgtSobaOrbitControlsModule,
+    NgtAmbientLightModule,
+    NgtSpotLightModule,
+    NgtMeshStandardMaterialModule
   ],
   providers: [ODataServiceFactory,
     { provide: ODataConfiguration,  useClass:MesODataConfig},

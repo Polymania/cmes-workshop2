@@ -16,3 +16,13 @@
   </div>
 </div>
 
+<ngt-canvas class="drawing">
+  <ngt-ambient-light></ngt-ambient-light>
+  <ngt-spot-light [position]="[2, 2, 4]"></ngt-spot-light>
+    <app-part [position]="[0,0,0]"
+    [length]="productionOrder?.Length" [width]="productionOrder?.Width" [thickness]="productionOrder?.Thickness" ></app-part>
+    <app-part [position]="[0,0,2]"
+    [length]="productionOrder?.Length" [width]="productionOrder?.Width" [thickness]="productionOrder?.Thickness" ></app-part>
+  <ngt-soba-orbit-controls></ngt-soba-orbit-controls>
+</ngt-canvas>
+
