@@ -1,4 +1,6 @@
 <!-- <p *ngIf="workCenter">{{workCenter['Code']}}</p> -->
+
+<div class="test" [ngClass]="{'testSmallScreen': isSmallScreen}">
 <div class="order">
   <mat-form-field class="example-full-width" appearance="outline" class="input">
     <mat-label>Bauteilnummer</mat-label>
@@ -25,4 +27,5 @@
     [length]="productionOrder?.Length" [width]="productionOrder?.Width" [thickness]="productionOrder?.Thickness" ></app-part>
   <ngt-soba-orbit-controls></ngt-soba-orbit-controls>
 </ngt-canvas>
+</div>
 
