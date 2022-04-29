@@ -1,3 +1,4 @@
+import { Platform } from '@angular/cdk/platform';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,6 +9,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title:string = 'cmes-workshop';
 
+  constructor(public platform: Platform){
+    console.log(platform);
+
+  }
   test(){
     this.title = "neuerName";
   }

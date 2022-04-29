@@ -2,7 +2,7 @@
   margin: 16px;
 }
 
-:host {
+.test {
   display: grid;
   grid-auto-rows: 1fr;
   grid-template-columns: 1fr 1fr;
@@ -14,6 +14,20 @@
   align-content: stretch;
   align-items: stretch;
 }
+.testSmallScreen {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 1fr ;
+  grid-template-rows: auto 1fr auto;
+  gap: 0px 0px;
+  grid-template-areas:
+    "order"
+    "steps"
+    "drawing";
+  align-content: stretch;
+  align-items: stretch;
+}
+
 .order { grid-area: order; }
 .steps { grid-area: steps; }
 .drawing {

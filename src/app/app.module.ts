@@ -25,7 +25,9 @@ import { NgtMeshModule } from '@angular-three/core/meshes';
 import { NgtSobaOrbitControlsModule } from '@angular-three/soba/controls'
 import  { NgtAmbientLightModule,  NgtSpotLightModule} from '@angular-three/core/lights'
 import { NgtMeshStandardMaterialModule } from '@angular-three/core/materials';
-import { PartComponent } from './components/part/part.component'
+import { PartComponent } from './components/part/part.component';
+import {PlatformModule} from '@angular/cdk/platform';
+import {LayoutModule} from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { PartComponent } from './components/part/part.component'
     NgtSobaOrbitControlsModule,
     NgtAmbientLightModule,
     NgtSpotLightModule,
-    NgtMeshStandardMaterialModule
+    NgtMeshStandardMaterialModule,
+    PlatformModule,
+    LayoutModule
   ],
   providers: [ODataServiceFactory,
     { provide: ODataConfiguration,  useClass:MesODataConfig},

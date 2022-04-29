@@ -1,5 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ODataService, ODataServiceFactory } from 'angular-odata-es5';
+import { Subscription, takeWhile } from 'rxjs';
 import { LogonService } from 'src/app/services/logon.service';
 import { SignalRService } from 'src/app/services/signal-r.service';
 
@@ -8,19 +10,35 @@ import { SignalRService } from 'src/app/services/signal-r.service';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, OnDestroy {
   odata:ODataService<any>;
   odataFeedback:ODataService<any>;
   productionOrder: any;
   itemCode: string;
+  isSmallScreen:boolean = false;
+  isAlive:boolean = true;
 
   constructor(private oDataService: ODataServiceFactory,
               private logonService: LogonService,
               private signalR: SignalRService,
-              private ref: ChangeDetectorRef) {
+              private ref: ChangeDetectorRef,
+              breakpointObserver: BreakpointObserver) {
     this.odata = oDataService.CreateService<any>("ProductionOrders");
     this.odataFeedback = oDataService.CreateService<any>("Feedbacks");
-    this.itemCode = '546858';
+    this.itemCode = '586549';
+    breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall])
+    .pipe(takeWhile(()=>this.isAlive))
+    .subscribe(result => {
+      this.isSmallScreen = false;
+      if(result.breakpoints[Breakpoints.Small]||result.breakpoints[Breakpoints.XSmall] ){
+        this.isSmallScreen = true;
+      }
+      console.log("Screensize small?" + this.isSmallScreen);
+
+    })
+  }
+  ngOnDestroy(): void {
+    this.isAlive = false;
   }
 
   ngOnInit(): void {
